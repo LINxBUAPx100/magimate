@@ -5,9 +5,9 @@
 
 // ── TODO: Actualiza con info real del profesor ──────────────
 export const PROFESOR = {
-  nombre: 'Prof. [Tu Nombre]',         // ← nombre real
+  nombre: 'Prof. Moisés Tejeda Loya',         // ← nombre real
   rol: 'Fundador de MagiMate',
-  credencial: 'Lic. en Matemáticas',   // ← carrera/universidad real
+  credencial: 'Lic. en Arquitectura con 20 años de experiencia dando clases',   // ← carrera/universidad real
   bio1: 'Toda mi vida ha sido una búsqueda constante de respuestas. Hoy que las conozco deseo compartirlas. Las matemáticas son el lenguaje universal de todas las ciencias.',
   bio2: 'Entiendo el miedo a equivocarse. Por eso MagiMate no es solo una asesoría: es una experiencia diseñada para devolverte la confianza que el sistema educativo tradicional no siempre da.',
   foto: null, // ← pon aquí la ruta: '/foto-profesor.jpg'
@@ -149,7 +149,7 @@ export const REDES = [
 // ── TODO: Conecta el formulario (Formspree/EmailJS/WhatsApp) ─
 export const CONTACTO = {
   email: 'contacto@magimate.com',        // ← tu correo real
-  whatsapp: 'https://wa.me/52XXXXXXXXXX', // ← tu número real
+  whatsapp: 'https://wa.me/529984415640', // ← tu número real
   formspreeId: 'XXXXXXXX',              // ← ID de Formspree si lo usas
 }
 
