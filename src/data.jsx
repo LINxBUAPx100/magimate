@@ -7,7 +7,7 @@
 export const PROFESOR = {
   nombre: 'Prof. Moisés Tejeda Loya',         // ← nombre real
   rol: 'Fundador de MagiMate',
-  credencial: 'Lic. en Arquitectura con 20 años de experiencia dando clases',   // ← carrera/universidad real
+  credencial: 'Lic. en Arquitectura con 26 años de experiencia dando clases',   // ← carrera/universidad real
   bio1: 'Toda mi vida ha sido una búsqueda constante de respuestas. Hoy que las conozco deseo compartirlas. Las matemáticas son el lenguaje universal de todas las ciencias.',
   bio2: 'Entiendo el miedo a equivocarse. Por eso MagiMate no es solo una asesoría: es una experiencia diseñada para devolverte la confianza que el sistema educativo tradicional no siempre da.',
   foto: null, // ← pon aquí la ruta: '/foto-profesor.jpg'
@@ -20,7 +20,7 @@ export const PAQUETES = [
     emoji: '🚀',
     nombre: 'Sesión Individual',
     desc: 'Ideal para un examen próximo o un tema puntual.',
-    precio: '$XXX',       // ← precio real
+    precio: 'desde $250',       // ← precio real
     nota: 'por sesión',
     ahorro: null,
     color: '#4182FA',
@@ -37,14 +37,14 @@ export const PAQUETES = [
     emoji: '⚡',
     nombre: 'Paquete Mensual',
     desc: '4 sesiones para avanzar de forma constante.',
-    precio: '$XXX',       // ← precio real
+    precio: '$899',       // ← precio real
     nota: 'por mes',
-    ahorro: 'Ahorras 15%',
+    ahorro: 'Ahorras 10%',
     color: '#FF6B6B',
     features: [
       '4 sesiones de 60 min',
       'Plan de estudio personalizado',
-      'Material de refuerzo ilimitado',
+      'Material de refuerzo',
       'Acceso a grabaciones',
       'Seguimiento semanal de progreso',
     ],
@@ -55,9 +55,9 @@ export const PAQUETES = [
     emoji: '🏆',
     nombre: 'Paquete Intensivo',
     desc: '8 sesiones para resultados profundos y rápidos.',
-    precio: '$XXX',       // ← precio real
+    precio: '$1,599',       // ← precio real
     nota: 'paquete completo',
-    ahorro: 'Ahorras 25%',
+    ahorro: 'Ahorras 20%',
     color: '#6BCB77',
     features: [
       '8 sesiones de 60 min',
@@ -72,8 +72,8 @@ export const PAQUETES = [
 
 export const AUDIENCIAS = [
   { emoji: '🧒', label: 'Niños', rango: '8 – 12 años', color: '#FFD93D', bg: '#FFF9E6', desc: 'Fundamentos matemáticos con juegos y ejemplos visuales súper divertidos.' },
-  { emoji: '🎒', label: 'Adolescentes', rango: '12 – 17 años', color: '#FF6B6B', bg: '#FFF0F0', desc: 'Álgebra, geometría y preparación para exámenes de admisión.' },
-  { emoji: '🎓', label: 'Universitarios', rango: '18 – 25 años', color: '#4182FA', bg: '#EEF4FF', desc: 'Cálculo, estadística y matemáticas financieras a fondo.' },
+  { emoji: '🎒', label: 'Adolescentes', rango: '12 – 17 años', color: '#FF6B6B', bg: '#FFF0F0', desc: 'Álgebra, geometría, estadística base y preparación para exámenes de admisión.' },
+  { emoji: '🎓', label: 'Universitarios', rango: '18 – 25 años', color: '#4182FA', bg: '#EEF4FF', desc: 'Cálculo integral y diferencial, estadística y matemáticas financieras, investigación de operaciones.' },
   { emoji: '💼', label: 'Adultos', rango: '25+ años', color: '#6BCB77', bg: '#F0FBF1', desc: 'Actualización profesional y matemáticas aplicadas al trabajo.' },
 ]
 
@@ -87,7 +87,7 @@ export const PASOS = [
 export const FAQS = [
   {
     q: '¿Cómo es una clase en línea con MagiMate?',
-    a: 'Nos conectamos por videollamada. Usamos una pizarra digital compartida donde el profe escribe, dibuja y resuelve ejercicios en tiempo real — igual que presencial, pero sin que tengas que moverte. Al terminar recibes resumen y ejercicios de práctica.',
+    a: 'Nos conectamos por videollamada. Usamos una pizarra digital compartida donde el profesor escribe, dibuja y resuelve ejercicios en tiempo real — igual que presencial, pero sin que tengas que moverte. Al terminar recibes resumen y ejercicios de práctica.',
   },
   {
     q: '¿Las asesorías son personalizadas?',
@@ -95,8 +95,7 @@ export const FAQS = [
   },
   {
     q: '¿Cuál es el costo y cómo se paga?',
-    // TODO: Actualiza con métodos de pago reales
-    a: 'El precio varía según el paquete elegido. Aceptamos transferencia bancaria, tarjeta de crédito/débito y PayPal. Agenda tu diagnóstico gratuito y te mandamos el tarifario completo.',
+    a: 'El precio varía según el paquete elegido. Aceptamos transferencia bancaria, tarjeta de crédito/débito y "transferencias internacionales". Agenda tu diagnóstico gratuito y te mandamos el tarifario completo.',
   },
   {
     q: '¿Para qué nivel educativo son las asesorías?',
@@ -141,8 +140,8 @@ export const TESTIMONIALES = [
 // ── TODO: Agrega tus redes sociales reales ─────────────────
 export const REDES = [
   { label: 'Instagram', url: 'https://instagram.com/magimate' },
-  { label: 'TikTok',    url: 'https://tiktok.com/@magimate' },
-  { label: 'YouTube',   url: 'https://youtube.com/@magimate' },
+  { label: 'TikTok',    url: '' },
+  { label: 'YouTube',   url: '' },
   { label: 'Facebook',  url: 'https://facebook.com/magimate' },
 ]
 
@@ -156,6 +155,7 @@ export const CONTACTO = {
 export const MATERIAS = [
   'Aritmética básica',
   'Álgebra',
+  'Estadística',
   'Geometría',
   'Trigonometría',
   'Cálculo Diferencial',
