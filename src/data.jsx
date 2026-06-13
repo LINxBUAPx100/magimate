@@ -1,15 +1,17 @@
 // ============================================================
 //  data.jsx — Contenido editorial de MagiMate
 //  Edita aquí todos los textos, precios y datos del sitio.
+//  Los campos "icon" usan nombres del set en src/icons.jsx
 // ============================================================
 
 // ── TODO: Actualiza con info real del profesor ──────────────
 export const PROFESOR = {
-  nombre: 'Prof. Moisés Tejeda Loya',         // ← nombre real
+  nombre: 'Prof. Moisés Tejeda Loya',
   rol: 'Fundador de MagiMate',
-  credencial: 'Lic. en Arquitectura con 26 años de experiencia dando clases',   // ← carrera/universidad real
+  credencial: 'Lic. en Arquitectura con 26 años de experiencia dando clases',
   bio1: 'Toda mi vida ha sido una búsqueda constante de respuestas. Hoy que las conozco deseo compartirlas. Las matemáticas son el lenguaje universal de todas las ciencias.',
   bio2: 'Entiendo el miedo a equivocarse. Por eso MagiMate no es solo una asesoría: es una experiencia diseñada para devolverte la confianza que el sistema educativo tradicional no siempre da.',
+  iniciales: 'MT',
   foto: null, // ← pon aquí la ruta: '/foto-profesor.jpg'
 }
 
@@ -17,10 +19,11 @@ export const PROFESOR = {
 export const PAQUETES = [
   {
     id: 'individual',
-    emoji: '🚀',
+    icon: 'rocket',
     nombre: 'Sesión Individual',
     desc: 'Ideal para un examen próximo o un tema puntual.',
-    precio: 'desde $250',       // ← precio real
+    precio: '$250',
+    prefijo: 'desde',
     nota: 'por sesión',
     ahorro: null,
     color: '#4182FA',
@@ -34,11 +37,12 @@ export const PAQUETES = [
   },
   {
     id: 'mensual',
-    emoji: '⚡',
+    icon: 'bolt',
     nombre: 'Paquete Mensual',
     desc: '4 sesiones para avanzar de forma constante.',
-    precio: '$899',       // ← precio real
-    nota: 'por mes',
+    precio: '$899',
+    prefijo: null,
+    nota: 'por mes · 4 sesiones',
     ahorro: 'Ahorras 10%',
     color: '#FF6B6B',
     features: [
@@ -52,11 +56,12 @@ export const PAQUETES = [
   },
   {
     id: 'intensivo',
-    emoji: '🏆',
+    icon: 'trophy',
     nombre: 'Paquete Intensivo',
     desc: '8 sesiones para resultados profundos y rápidos.',
-    precio: '$1,599',       // ← precio real
-    nota: 'paquete completo',
+    precio: '$1,599',
+    prefijo: null,
+    nota: 'paquete completo · 8 sesiones',
     ahorro: 'Ahorras 20%',
     color: '#6BCB77',
     features: [
@@ -71,17 +76,17 @@ export const PAQUETES = [
 ]
 
 export const AUDIENCIAS = [
-  { emoji: '🧒', label: 'Niños', rango: '8 – 12 años', color: '#FFD93D', bg: '#FFF9E6', desc: 'Fundamentos matemáticos con juegos y ejemplos visuales súper divertidos.' },
-  { emoji: '🎒', label: 'Adolescentes', rango: '12 – 17 años', color: '#FF6B6B', bg: '#FFF0F0', desc: 'Álgebra, geometría, estadística base y preparación para exámenes de admisión.' },
-  { emoji: '🎓', label: 'Universitarios', rango: '18 – 25 años', color: '#4182FA', bg: '#EEF4FF', desc: 'Cálculo integral y diferencial, estadística y matemáticas financieras, investigación de operaciones.' },
-  { emoji: '💼', label: 'Adultos', rango: '25+ años', color: '#6BCB77', bg: '#F0FBF1', desc: 'Actualización profesional y matemáticas aplicadas al trabajo.' },
+  { icon: 'shapes', label: 'Niños', rango: '8 – 12 años', color: '#E5A800', bg: '#FFF9E6', desc: 'Fundamentos matemáticos con juegos y ejemplos visuales súper divertidos.' },
+  { icon: 'backpack', label: 'Adolescentes', rango: '12 – 17 años', color: '#FF6B6B', bg: '#FFF0F0', desc: 'Álgebra, geometría, estadística base y preparación para exámenes de admisión.' },
+  { icon: 'cap', label: 'Universitarios', rango: '18 – 25 años', color: '#4182FA', bg: '#EEF4FF', desc: 'Cálculo integral y diferencial, estadística y matemáticas financieras, investigación de operaciones.' },
+  { icon: 'briefcase', label: 'Adultos', rango: '25+ años', color: '#3DA94C', bg: '#F0FBF1', desc: 'Actualización profesional y matemáticas aplicadas al trabajo.' },
 ]
 
 export const PASOS = [
-  { num: '01', emoji: '📝', titulo: 'Agenda gratis', desc: 'Reserva tu diagnóstico de 15 min sin costo y sin compromiso. Solo tú y el profesor.' },
-  { num: '02', emoji: '🎯', titulo: 'Tu plan a la medida', desc: 'Diseñamos juntos un programa adaptado a tus materias, ritmo y objetivos.' },
-  { num: '03', emoji: '💻', titulo: 'Aprende en línea', desc: 'Pizarra digital, recursos visuales y ejercicios en tiempo real, desde cualquier dispositivo.' },
-  { num: '04', emoji: '📈', titulo: 'Mide tu avance', desc: 'Seguimiento semana a semana hasta que las matemáticas dejen de darte miedo.' },
+  { num: '01', icon: 'calendar', color: '#4182FA', bg: '#EEF4FF', titulo: 'Agenda gratis', desc: 'Reserva tu diagnóstico de 15 min sin costo y sin compromiso. Solo tú y el profesor.' },
+  { num: '02', icon: 'target', color: '#FF6B6B', bg: '#FFF0F0', titulo: 'Tu plan a la medida', desc: 'Diseñamos juntos un programa adaptado a tus materias, ritmo y objetivos.' },
+  { num: '03', icon: 'monitor', color: '#3DA94C', bg: '#F0FBF1', titulo: 'Aprende en línea', desc: 'Pizarra digital, recursos visuales y ejercicios en tiempo real, desde cualquier dispositivo.' },
+  { num: '04', icon: 'chart', color: '#A78BFA', bg: '#F5F0FF', titulo: 'Mide tu avance', desc: 'Seguimiento semana a semana hasta que las matemáticas dejen de darte miedo.' },
 ]
 
 export const FAQS = [
@@ -95,7 +100,7 @@ export const FAQS = [
   },
   {
     q: '¿Cuál es el costo y cómo se paga?',
-    a: 'El precio varía según el paquete elegido. Aceptamos transferencia bancaria, tarjeta de crédito/débito y "transferencias internacionales". Agenda tu diagnóstico gratuito y te mandamos el tarifario completo.',
+    a: 'El precio varía según el paquete elegido. Aceptamos transferencia bancaria, tarjeta de crédito/débito y transferencias internacionales. Agenda tu diagnóstico gratuito y te mandamos el tarifario completo.',
   },
   {
     q: '¿Para qué nivel educativo son las asesorías?',
@@ -138,31 +143,30 @@ export const TESTIMONIALES = [
 ]
 
 // ── TODO: Agrega tus redes sociales reales ─────────────────
+//  Las redes sin URL no se muestran en la página.
 export const REDES = [
-  { label: 'Instagram', url: 'https://instagram.com/magimate' },
-  { label: 'TikTok',    url: '' },
-  { label: 'YouTube',   url: '' },
-  { label: 'Facebook',  url: 'https://facebook.com/magimate' },
+  { label: 'Instagram', icon: 'instagram', url: 'https://instagram.com/magimate' },
+  { label: 'TikTok',    icon: 'tiktok',    url: '' },
+  { label: 'YouTube',   icon: 'youtube',   url: '' },
+  { label: 'Facebook',  icon: 'facebook',  url: 'https://facebook.com/magimate' },
 ]
 
-// ── TODO: Conecta el formulario (Formspree/EmailJS/WhatsApp) ─
+// ── Contacto: el formulario arma un mensaje de WhatsApp ────
 export const CONTACTO = {
-  email: 'contacto@magimate.com',        // ← tu correo real
+  email: 'contacto@magimate.com',         // ← tu correo real
   whatsapp: 'https://wa.me/529984415640', // ← tu número real
-  formspreeId: 'XXXXXXXX',              // ← ID de Formspree si lo usas
 }
 
 export const MATERIAS = [
   'Aritmética básica',
   'Álgebra',
-  'Estadística',
   'Geometría',
+  'Geometría Analítica',
   'Trigonometría',
   'Cálculo Diferencial',
   'Cálculo Integral',
   'Estadística',
   'Probabilidad',
   'Matemáticas Financieras',
-  'Geometría Analítica',
   'Otra / No estoy seguro',
 ]
