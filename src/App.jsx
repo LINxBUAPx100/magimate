@@ -12,27 +12,45 @@ const PAQUETE_GRATIS = 'Diagnóstico gratuito (15 min)'
    ══════════════════════════════════════════════ */
 function useReveal() {
   useEffect(() => {
-    const els = document.querySelectorAll('.reveal')
+    const els = [...document.querySelectorAll('.reveal')]
+
+    // Marcamos con un atributo (data-show), NO con una clase: React controla el
+    // className de cada elemento y lo reescribiría al re-renderizar (p.ej. al abrir
+    // una pregunta del FAQ), borrando una clase añadida por fuera. Un data-* que
+    // React no conoce sobrevive a los re-renders.
+    const show = (el) => el.setAttribute('data-show', '')
+
+    // Sin IntersectionObserver: mostrar todo de una vez (nunca ocultar contenido).
+    if (typeof IntersectionObserver === 'undefined') {
+      els.forEach(show)
+      return
+    }
+
     const obs = new IntersectionObserver(
-      // Usamos un atributo (data-show) en vez de una clase: React controla el
-      // className de cada elemento y lo reescribiría al re-renderizar (p.ej. al
-      // abrir una pregunta del FAQ), borrando una clase añadida por el observer.
-      // Un data-* que React no conoce sobrevive a los re-renders.
       (entries) => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.setAttribute('data-show', ''); obs.unobserve(e.target) }
+        if (e.isIntersecting) { show(e.target); obs.unobserve(e.target) }
       }),
-      // threshold 0 + rootMargin positivo abajo: revela en cuanto el elemento
-      // asoma (o incluso un poco antes), para que nunca quede atascado invisible
-      // si el usuario no hace scroll hasta el fondo de una sección alta.
       { threshold: 0, rootMargin: '0px 0px 80px 0px' }
     )
     els.forEach(el => obs.observe(el))
 
-    // Failsafe: si IntersectionObserver no existe o algo falla, muestra todo.
-    if (typeof IntersectionObserver === 'undefined') {
-      els.forEach(el => el.setAttribute('data-show', ''))
+    // Red de seguridad: si el observer no revelara un elemento que ya está dentro
+    // (o por encima) de la ventana, lo mostramos igual con un barrido en scroll y
+    // un failsafe por tiempo. Garantiza que NINGÚN contenido quede oculto.
+    const sweep = () => {
+      let pending = 0
+      els.forEach(el => {
+        if (el.hasAttribute('data-show')) return
+        const r = el.getBoundingClientRect()
+        if (r.top < window.innerHeight + 80) { show(el); obs.unobserve(el) }
+        else pending++
+      })
+      if (pending === 0) window.removeEventListener('scroll', sweep)
     }
-    return () => obs.disconnect()
+    window.addEventListener('scroll', sweep, { passive: true })
+    const t = setTimeout(sweep, 1200)
+
+    return () => { obs.disconnect(); clearTimeout(t); window.removeEventListener('scroll', sweep) }
   }, [])
 }
 

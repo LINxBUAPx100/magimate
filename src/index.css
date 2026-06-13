@@ -1460,7 +1460,10 @@ section { scroll-margin-top: 84px; }
   background: var(--off);
   border-radius: var(--radius-md);
   border: 1.5px solid var(--light);
-  transition: border-color 0.25s ease, background 0.25s ease;
+  /* Incluye opacity/transform para no pisar la animación de entrada de .reveal */
+  transition: border-color 0.25s ease, background 0.25s ease,
+              opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+              transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
 .faq-item.open { border-color: var(--blue); background: white; box-shadow: var(--shadow-soft); }
