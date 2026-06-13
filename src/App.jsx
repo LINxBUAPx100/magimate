@@ -125,7 +125,7 @@ const NAV_LINKS = [
   { label: 'Para quién',    href: '#audiencia' },
   { label: 'Cómo funciona', href: '#como-funciona' },
   { label: 'Paquetes',      href: '#servicios' },
-  { label: 'El Profe',      href: '#sobre-mi' },
+  { label: 'El Profesor',      href: '#sobre-mi' },
   { label: 'FAQ',           href: '#faq' },
 ]
 
