@@ -14,12 +14,24 @@ function useReveal() {
   useEffect(() => {
     const els = document.querySelectorAll('.reveal')
     const obs = new IntersectionObserver(
+      // Usamos un atributo (data-show) en vez de una clase: React controla el
+      // className de cada elemento y lo reescribiría al re-renderizar (p.ej. al
+      // abrir una pregunta del FAQ), borrando una clase añadida por el observer.
+      // Un data-* que React no conoce sobrevive a los re-renders.
       (entries) => entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) }
+        if (e.isIntersecting) { e.target.setAttribute('data-show', ''); obs.unobserve(e.target) }
       }),
-      { threshold: 0.12 }
+      // threshold 0 + rootMargin positivo abajo: revela en cuanto el elemento
+      // asoma (o incluso un poco antes), para que nunca quede atascado invisible
+      // si el usuario no hace scroll hasta el fondo de una sección alta.
+      { threshold: 0, rootMargin: '0px 0px 80px 0px' }
     )
     els.forEach(el => obs.observe(el))
+
+    // Failsafe: si IntersectionObserver no existe o algo falla, muestra todo.
+    if (typeof IntersectionObserver === 'undefined') {
+      els.forEach(el => el.setAttribute('data-show', ''))
+    }
     return () => obs.disconnect()
   }, [])
 }

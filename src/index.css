@@ -166,7 +166,7 @@ section { scroll-margin-top: 84px; }
   stroke-dashoffset: 100;
 }
 
-.reveal.visible .marker-svg path,
+.reveal[data-show] .marker-svg path,
 .hero-copy .marker-svg path {
   animation: draw 0.9s cubic-bezier(0.6, 0, 0.2, 1) 0.45s forwards;
 }
@@ -282,7 +282,7 @@ section { scroll-margin-top: 84px; }
   transition: opacity 0.7s cubic-bezier(0.2, 0.6, 0.2, 1), transform 0.7s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
 
-.reveal.visible {
+.reveal[data-show] {
   opacity: 1;
   transform: translateY(0);
 }
