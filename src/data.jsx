@@ -145,10 +145,10 @@ export const TESTIMONIALES = [
 // ── TODO: Agrega tus redes sociales reales ─────────────────
 //  Las redes sin URL no se muestran en la página.
 export const REDES = [
-  { label: 'Instagram', icon: 'instagram', url: 'https://instagram.com/magimate' },
+  { label: 'Instagram', icon: 'instagram', url: '' },
   { label: 'TikTok',    icon: 'tiktok',    url: '' },
   { label: 'YouTube',   icon: 'youtube',   url: '' },
-  { label: 'Facebook',  icon: 'facebook',  url: 'https://facebook.com/magimate' },
+  { label: 'Facebook',  icon: 'facebook',  url: '' },
 ]
 
 // ── Contacto: el formulario arma un mensaje de WhatsApp ────
