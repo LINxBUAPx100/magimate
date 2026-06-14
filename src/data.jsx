@@ -120,7 +120,7 @@ export const FAQS = [
 // ── TODO: Reemplaza con testimoniales reales de tus alumnos ─
 export const TESTIMONIALES = [
   {
-    texto: '"Llevaba dos semestres reprobando cálculo. Con MagiMate en 4 semanas entendí cosas que no había comprendido en dos años."',
+    texto: '"Llevaba dos parciales reprobando cálculo. Con MagiMate en 4 semanas entendí cosas que no había comprendido en dos años."',
     nombre: 'Alejandra M.',
     meta: 'Ingeniería Industrial · CDMX',
     iniciales: 'AM',
@@ -139,6 +139,13 @@ export const TESTIMONIALES = [
     meta: 'Contaduría · Monterrey',
     iniciales: 'VP',
     color: '#6BCB77',
+  },
+   {
+    texto: '"El mejor profesor es el que se toma el tiempo para explicarte a detalle, incluso lo que es obvio a simple vista pero parece complicado al principio."',
+    nombre: 'Angel V.',
+    meta: 'Cinematografía · Cancún',
+    iniciales: 'AV',
+    color: '#b63dac',
   },
 ]
 

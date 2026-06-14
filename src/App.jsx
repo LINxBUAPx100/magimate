@@ -1015,7 +1015,7 @@ function Footer() {
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} MagiMate. Todos los derechos reservados.</p>
           <p className="footer-made">
-            Hecho con constancia, disciplina y éxito
+            Hecho por Riders.media
             <Icon name="sparkle" size={13} stroke={2} />
           </p>
         </div>

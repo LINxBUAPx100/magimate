@@ -1831,3 +1831,67 @@ section { scroll-margin-top: 84px; }
   .fx-point, .fx-label { opacity: 1; }
   .marker-svg path { stroke-dashoffset: 0; }
 }
+/* 1. Contenedor principal: alinear horizontalmente */
+.testi-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 0; /* Espacio extra para que no se corten al escalar */
+}
+
+/* 2. Diseño de las tarjetas base y solapamiento */
+.testi-card {
+  position: relative;
+  min-width: 280px; /* Asegura que no se aplasten demasiado */
+  background-color: white; /* Fundamental para que no se trasluzca el texto de atrás */
+  margin-left: -80px; /* Aquí está el truco: empuja la tarjeta sobre la anterior */
+  box-shadow: -10px 0 20px rgba(0,0,0,0.05); /* Sombra lateral para dar profundidad */
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  z-index: 1;
+}
+
+/* Evitamos que la primera tarjeta tenga margen negativo a la izquierda */
+.testi-card:first-child {
+  margin-left: 0;
+}
+
+/* 3. El efecto: Al pasar el mouse sobre el CONTENEDOR, desenfoca TODAS las tarjetas */
+.testi-grid:hover .testi-card {
+  filter: blur(4px) opacity(0.8);
+  transform: scale(0.95);
+  z-index: 0;
+}
+
+/* 4. El efecto: Al pasar el mouse sobre una TARJETA ESPECÍFICA, quita el desenfoque y resáltala */
+.testi-grid .testi-card:hover {
+  filter: blur(0) opacity(1);
+  transform: scale(1.05) translateY(-10px); /* Se levanta un poco */
+  z-index: 10; /* La trae al frente de todas */
+  box-shadow: 0 15px 30px rgba(0,0,0,0.15); /* Sombra más pronunciada */
+}
+
+/* ---------------------------------------------------
+   RESPONSIVO: Importante para móviles
+   --------------------------------------------------- */
+@media (max-width: 768px) {
+  .testi-grid {
+    flex-direction: column; /* Vuelve a apilar hacia abajo en pantallas chicas */
+    gap: 20px;
+  }
+  
+  .testi-card {
+    margin-left: 0; /* Quita el solapamiento */
+    width: 100%;
+  }
+
+  /* Desactivamos el efecto hover en móviles, ya que no hay cursor */
+  .testi-grid:hover .testi-card {
+    filter: none;
+    transform: none;
+  }
+  
+  .testi-grid .testi-card:hover {
+    transform: none;
+  }
+}
