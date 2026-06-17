@@ -72,6 +72,37 @@ function Marker({ children, color = 'var(--yellow)' }) {
   )
 }
 
+function TypingText({ text, speed = 45, className = '' }) {
+  const [value, setValue] = useState('')
+  const [isTyping, setIsTyping] = useState(true)
+
+  useEffect(() => {
+    let index = 0
+    setValue('')
+    setIsTyping(true)
+    const id = window.setInterval(() => {
+      index += 1
+      setValue(text.slice(0, index))
+      if (index >= text.length) {
+        window.clearInterval(id)
+        setIsTyping(false)
+      }
+    }, speed)
+    return () => window.clearInterval(id)
+  }, [text, speed])
+
+  return (
+    <div className={`${className} typing-wrap`} aria-label={text}>
+      <p className={`typing-text ${isTyping ? 'typing' : ''}`} aria-hidden="true">
+        {value}
+      </p>
+      <p className="typing-buffer" aria-hidden="true">
+        {text}
+      </p>
+    </div>
+  )
+}
+
 /* ══════════════════════════════════════════════
    OLA DIVISORIA — el abrazo entre secciones
    ══════════════════════════════════════════════ */
@@ -89,14 +120,14 @@ function Wave({ fill = '#FFFFFF', position = 'bottom' }) {
    SÍMBOLOS MATEMÁTICOS FLOTANTES (decorativos)
    ══════════════════════════════════════════════ */
 const SYMS = [
-  { s: '∑', pos: { top: '14%', left: '4%' },   size: 72, color: 'var(--sky)',    delay: 0,   rot: -8 },
-  { s: 'π', pos: { top: '66%', left: '6%' },   size: 52, color: 'var(--yellow)', delay: 1.1, rot: 6 },
-  { s: '∞', pos: { top: '16%', right: '6%' },  size: 60, color: 'var(--coral)',  delay: 0.5, rot: -4 },
-  { s: '√', pos: { bottom: '15%', right: '8%' }, size: 48, color: 'var(--green)', delay: 1.7, rot: 10 },
-  { s: 'Δ', pos: { top: '40%', left: '45%' },  size: 38, color: 'var(--purple)', delay: 2.2, rot: -10 },
-  { s: '÷', pos: { bottom: '30%', left: '16%' }, size: 42, color: 'var(--mist)', delay: 0.8, rot: 5 },
-  { s: '%', pos: { bottom: '42%', right: '20%' }, size: 44, color: 'var(--yellow)', delay: 1.4, rot: -12 },
-  { s: '±', pos: { top: '74%', right: '34%' }, size: 40, color: 'var(--coral)', delay: 2.6, rot: 8 },
+  { s: '∑', pos: { top: '12%', left: '6%' },   size: 86, color: 'var(--sky)',    delay: 0,   rot: -8, driftX: '24px', driftY: '26px' },
+  { s: 'π', pos: { top: '62%', left: '8%' },   size: 64, color: 'var(--yellow)', delay: 1.1, rot: 6, driftX: '18px', driftY: '28px' },
+  { s: '∞', pos: { top: '18%', right: '6%' },  size: 74, color: 'var(--coral)',  delay: 0.5, rot: -4, driftX: '26px', driftY: '22px' },
+  { s: '√', pos: { bottom: '16%', right: '8%' }, size: 58, color: 'var(--green)', delay: 1.7, rot: 10, driftX: '20px', driftY: '24px' },
+  { s: 'Δ', pos: { top: '42%', left: '42%' },  size: 50, color: 'var(--purple)', delay: 2.2, rot: -10, driftX: '28px', driftY: '18px' },
+  { s: '÷', pos: { bottom: '32%', left: '16%' }, size: 54, color: 'var(--mist)', delay: 0.8, rot: 5, driftX: '24px', driftY: '26px' },
+  { s: '%', pos: { bottom: '44%', right: '20%' }, size: 56, color: 'var(--yellow)', delay: 1.4, rot: -12, driftX: '22px', driftY: '24px' },
+  { s: '±', pos: { top: '72%', right: '34%' }, size: 52, color: 'var(--coral)', delay: 2.6, rot: 8, driftX: '20px', driftY: '22px' },
 ]
 
 function FloatingSymbols() {
@@ -108,8 +139,10 @@ function FloatingSymbols() {
           fontSize: x.size,
           color: x.color,
           '--rot': `${x.rot}deg`,
+          '--drift-x': x.driftX,
+          '--drift-y': x.driftY,
           animationDelay: `${x.delay}s`,
-          animationDuration: `${6 + i * 0.7}s`,
+          animationDuration: `${16 + i * 1}s`,
         }}>
           {x.s}
         </span>
@@ -157,7 +190,7 @@ function Navbar() {
     <>
       <nav className={`nav ${scrolled || menuOpen ? 'nav-scrolled' : ''}`}>
         <a href="#inicio" className="nav-logo" onClick={() => setMenuOpen(false)}>
-          <div className="logo-mark">M²</div>
+          <img src="/favicon.svg" alt="MagiMate" className="logo-mark" />
           <span className="logo-text">MagiMate</span>
         </a>
 
@@ -209,7 +242,7 @@ function Board() {
   return (
     <div className="hero-board">
       <div className="board-chip c1">
-        <Icon name="sparkle" size={15} stroke={2} />
+        <span className="chip-logo">M²</span>
         100% personalizado
       </div>
       <div className="board-chip c2">
@@ -305,11 +338,6 @@ function Hero() {
 
       <div className="container hero-grid">
         <div className="hero-copy">
-          <div className="hero-eyebrow">
-            <Icon name="sparkle" size={15} stroke={2} />
-            Asesorías 1 a 1 · En línea · Toda Latinoamérica
-          </div>
-
           <h1 className="hero-title">
             Descubre el<br />
             <Marker><span className="grad-text">genio</span></Marker> en ti
@@ -360,14 +388,25 @@ function Marquee() {
 
   const Row = () => (
     <div className="marquee-row" aria-hidden="true">
-      {items.map((m, i) => (
-        <span key={m} className="marquee-item">
-          <span className="marquee-sym" style={{ color: sepColors[i % sepColors.length] }}>
-            {seps[i % seps.length]}
+      {items.map((m, i) => {
+        const delay = (i % 6) * 0.2
+        const duration = 2.4 + (i % 5) * 0.25
+        return (
+          <span key={`${m}-${i}`} className="marquee-item">
+            <span
+              className="marquee-sym"
+              style={{
+                color: sepColors[i % sepColors.length],
+                animationDelay: `${delay}s`,
+                animationDuration: `${duration}s`,
+              }}
+            >
+              {seps[i % seps.length]}
+            </span>
+            {m}
           </span>
-          {m}
-        </span>
-      ))}
+        )
+      })}
     </div>
   )
 
@@ -542,9 +581,10 @@ function LeadMagnet() {
             Antes de decidir,<br />
             <Marker>prueba sin riesgo</Marker>
           </h2>
-          <p className="lead-text">
-            15 minutos de diagnóstico gratuito para conocer tu nivel, tus objetivos y diseñar tu camino. Sin tarjeta, sin presión.
-          </p>
+          <TypingText
+            className="lead-text"
+            text="15 minutos de diagnóstico gratuito para conocer tu nivel, tus objetivos y diseñar tu camino. Sin tarjeta, sin presión."
+          />
           <a href="#contacto" className="btn btn-yellow">
             <Icon name="calendar" size={17} stroke={2} />
             Reservar mi lugar gratis
@@ -978,10 +1018,7 @@ function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-              <div className="logo-mark" style={{ width: 40, height: 40, fontSize: 17 }}>M²</div>
-              <span className="logo-text" style={{ color: 'white' }}>MagiMate</span>
-            </div>
+            <span className="logo-text" style={{ color: 'white' }}>MagiMate</span>
             <p>El arte de imaginar. Asesorías de matemáticas personalizadas para toda Latinoamérica.</p>
             <div className="footer-social">
               {redes.map(r => (
@@ -1024,10 +1061,6 @@ function Footer() {
 
         <div className="footer-bottom">
           <p>© {new Date().getFullYear()} MagiMate. Todos los derechos reservados.</p>
-          <p className="footer-made">
-            Hecho por Riders.media
-            <Icon name="sparkle" size={13} stroke={2} />
-          </p>
         </div>
       </div>
     </footer>
