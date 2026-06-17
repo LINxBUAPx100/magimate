@@ -12,7 +12,7 @@ export const PROFESOR = {
   bio1: 'Toda mi vida ha sido una búsqueda constante de respuestas. Hoy que las conozco deseo compartirlas. Las matemáticas son el lenguaje universal de todas las ciencias.',
   bio2: 'Entiendo el miedo a equivocarse. Por eso MagiMate no es solo una asesoría: es una experiencia diseñada para devolverte la confianza que el sistema educativo tradicional no siempre da.',
   iniciales: 'MT',
-  foto: null, // ← pon aquí la ruta: '/foto-profesor.jpg'
+  foto: 'https://lh3.googleusercontent.com/d/1ts7cylo1haSNbDlcepPsGTd6sn3TTw9k', // ← Enlace directo de Google Drive (ID del archivo)
 }
 
 // ── TODO: Define tus precios reales ────────────────────────

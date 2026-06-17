@@ -679,11 +679,21 @@ function SobreMi() {
   return (
     <section id="sobre-mi" style={{ padding: 'var(--section-pad)', background: 'white' }}>
       <div className="container sobre-grid">
-        {/* TODO: Reemplaza por <img src={PROFESOR.foto} alt={PROFESOR.nombre} className="sobre-photo" style={{objectFit:'cover'}} /> cuando tengas la foto */}
-        <div className="sobre-photo reveal">
-          <div className="sobre-monogram">{PROFESOR.iniciales}</div>
-          <p>Foto del profesor</p>
-        </div>
+        
+        {/* Muestra la foto real si está definida, si no, usa el placeholder */}
+        {PROFESOR.foto ? (
+          <img 
+            src={PROFESOR.foto} 
+            alt={PROFESOR.nombre} 
+            className="sobre-photo reveal" 
+            style={{ objectFit: 'cover' }} 
+          />
+        ) : (
+          <div className="sobre-photo reveal">
+            <div className="sobre-monogram">{PROFESOR.iniciales}</div>
+            <p>Foto del profesor</p>
+          </div>
+        )}
 
         <div className="reveal reveal-delay-1">
           <span className="section-label">Tu guía</span>
